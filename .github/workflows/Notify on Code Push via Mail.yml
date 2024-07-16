@@ -3,7 +3,7 @@ name: Notify on Code Push via Mail
 on:
   push:
     branches:
-      - Demo  # You can specify the branch you want to monitor
+      - main  # You can specify the branch you want to monitor
 
 jobs:
   notify:
