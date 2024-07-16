@@ -1,0 +1,21 @@
+name: Notify on Code Push
+
+on:
+  push:
+    branches:
+      - Demo  # You can specify the branch you want to monitor
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Send Notification
+        uses: appleboy/telegram-action@v0.2.0
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: "New code has been pushed to the repository. Please review the changes."
