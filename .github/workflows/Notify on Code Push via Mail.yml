@@ -1,0 +1,26 @@
+name: Notify on Code Push via Mail
+
+on:
+  push:
+    branches:
+      - Demo  # You can specify the branch you want to monitor
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com  # Replace with your SMTP server
+          server_port: 587  # Replace with your SMTP server port
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "New Code Push to Repository"
+          body: "New code has been pushed to the repository. Please review the changes."
+          to: nithinkumarreddy99@gmail.com  # Replace with the recipient's email address
+          from: nithin.r@revemax.ai  # Replace with the sender's email address
